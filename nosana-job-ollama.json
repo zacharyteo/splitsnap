@@ -9,7 +9,7 @@
       "args": {
         "image": "docker.io/ollama/ollama:0.40.2",
         "entrypoint": ["/bin/sh", "-c"],
-        "cmd": ["ollama serve & sleep 5; ollama pull qwen2.5-coder:7b; wait"],
+        "cmd": ["ollama serve & sleep 5; ollama pull qwen2.5-coder:7b; ollama pull qwen2.5vl:3b; wait"],
         "env": { "OLLAMA_HOST": "0.0.0.0:11434", "OLLAMA_KEEP_ALIVE": "-1" },
         "gpu": true,
         "expose": [

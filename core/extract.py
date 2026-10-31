@@ -21,16 +21,34 @@ All money in integer cents (e.g. $12.50 -> 1250). line_cents is the line total (
 Use 0 for service charge or GST if not printed. Number item ids i1, i2, ... Do not invent items."""
 
 
+def shrink(image_bytes: bytes, max_side: int = 1024) -> bytes:
+    """Phone photos are ~4k image tokens; downscale so the vision model's context fits."""
+    import io
+
+    from PIL import Image, ImageOps
+    img = ImageOps.exif_transpose(Image.open(io.BytesIO(image_bytes))).convert("RGB")
+    img.thumbnail((max_side, max_side))
+    buf = io.BytesIO()
+    img.save(buf, "JPEG", quality=90)
+    return buf.getvalue()
+
+
 def extract(image_bytes: bytes, mime: str = "image/jpeg", on_event=lambda e: None) -> dict:
     model = llm.vision_model()
     if not model:
         raise RuntimeError("No vision model configured (NOSANA_VISION_MODEL). Use a sample or edit the table.")
-    url = f"data:{mime};base64,{base64.b64encode(image_bytes).decode()}"
+    url = f"data:image/jpeg;base64,{base64.b64encode(shrink(image_bytes)).decode()}"
     hint, receipt, fails, trace = "", None, [], []
     for k in range(1, MAX_REREADS + 2):
         content = [{"type": "text", "text": PROMPT + hint}, {"type": "image_url", "image_url": {"url": url}}]
-        text, _, secs = llm.chat([{"role": "user", "content": content}], model=model, max_tokens=2000)
         try:
+            text, _, secs = llm.chat([{"role": "user", "content": content}], model=model, max_tokens=2000)
+        except RuntimeError as e:  # e.g. small vision models looping ("token repeat limit")
+            text, secs = "", 0.0
+            fails = [f"READ FAIL: {str(e)[:160]}"]
+        try:
+            if not text:
+                raise ValueError(fails[0] if fails else "empty reply")
             receipt = llm.parse_json(text)
             fails = verify_receipt(receipt)
         except Exception as e:  # noqa: BLE001
