@@ -1,0 +1,228 @@
+{
+ "bistro": {
+  "label": "Restaurant with SC + GST, 5 friends",
+  "receipt": {
+   "merchant": "SAMPLE Bistro (TEST DATA)",
+   "items": [
+    {
+     "id": "i1",
+     "name": "Seafood Platter",
+     "qty": 1,
+     "line_cents": 4800,
+     "category": "food",
+     "category_confidence": 0.95
+    },
+    {
+     "id": "i2",
+     "name": "Chicken Rice",
+     "qty": 2,
+     "line_cents": 1600,
+     "category": "food",
+     "category_confidence": 0.95
+    },
+    {
+     "id": "i3",
+     "name": "Laksa",
+     "qty": 1,
+     "line_cents": 1200,
+     "category": "food",
+     "category_confidence": 0.95
+    },
+    {
+     "id": "i4",
+     "name": "Tiger Beer",
+     "qty": 3,
+     "line_cents": 3000,
+     "category": "drink",
+     "category_confidence": 0.95
+    },
+    {
+     "id": "i5",
+     "name": "House Red Wine (glass)",
+     "qty": 2,
+     "line_cents": 2800,
+     "category": "drink",
+     "category_confidence": 0.95
+    },
+    {
+     "id": "i6",
+     "name": "Lime Juice",
+     "qty": 1,
+     "line_cents": 600,
+     "category": "drink",
+     "category_confidence": 0.6
+    },
+    {
+     "id": "i7",
+     "name": "Chendol",
+     "qty": 1,
+     "line_cents": 1200,
+     "category": "dessert",
+     "category_confidence": 0.95
+    }
+   ],
+   "subtotal_cents": 15200,
+   "discount_cents": 0,
+   "service_charge_cents": 1520,
+   "gst_cents": 1505,
+   "total_cents": 18225,
+   "notes": [
+    "SC 10% on subtotal; GST 9% on subtotal+SC"
+   ]
+  },
+  "people": [
+   "Arun",
+   "Priya",
+   "Mei",
+   "Dan",
+   "Siti"
+  ],
+  "payer": "Mei",
+  "rules": "Arun didn't drink anything. It's Priya's birthday so she pays nothing. The seafood platter was only shared by Arun, Mei and Dan. Dan had 2 of the 3 beers and Siti had 1."
+ },
+ "hawker": {
+  "label": "Hawker centre, 3 friends, uneven total",
+  "receipt": {
+   "merchant": "SAMPLE Hawker Stall (TEST DATA)",
+   "items": [
+    {
+     "id": "i1",
+     "name": "Char Kway Teow",
+     "qty": 2,
+     "line_cents": 1100,
+     "category": "food",
+     "category_confidence": 0.95
+    },
+    {
+     "id": "i2",
+     "name": "Satay (10 sticks)",
+     "qty": 1,
+     "line_cents": 1200,
+     "category": "food",
+     "category_confidence": 0.95
+    },
+    {
+     "id": "i3",
+     "name": "Carrot Cake",
+     "qty": 1,
+     "line_cents": 450,
+     "category": "food",
+     "category_confidence": 0.95
+    },
+    {
+     "id": "i4",
+     "name": "Sugarcane Juice",
+     "qty": 3,
+     "line_cents": 540,
+     "category": "drink",
+     "category_confidence": 0.95
+    },
+    {
+     "id": "i5",
+     "name": "Kopi O",
+     "qty": 2,
+     "line_cents": 350,
+     "category": "drink",
+     "category_confidence": 0.95
+    }
+   ],
+   "subtotal_cents": 3640,
+   "discount_cents": 0,
+   "service_charge_cents": 0,
+   "gst_cents": 0,
+   "total_cents": 3640,
+   "notes": [
+    "Hawker: no SC, no GST"
+   ]
+  },
+  "people": [
+   "Zac",
+   "Wei Ling",
+   "Ravi"
+  ],
+  "payer": "Zac",
+  "rules": "Split everything equally."
+ },
+ "misread": {
+  "label": "Blurry photo (Loop 1 catches a misread)",
+  "receipt": {
+   "merchant": "SAMPLE Bistro, blurry photo (TEST DATA)",
+   "items": [
+    {
+     "id": "i1",
+     "name": "Seafood Platter",
+     "qty": 1,
+     "line_cents": 4800,
+     "category": "food",
+     "category_confidence": 0.95
+    },
+    {
+     "id": "i2",
+     "name": "Chicken Rice",
+     "qty": 2,
+     "line_cents": 1600,
+     "category": "food",
+     "category_confidence": 0.95
+    },
+    {
+     "id": "i3",
+     "name": "Laksa",
+     "qty": 1,
+     "line_cents": 1200,
+     "category": "food",
+     "category_confidence": 0.95
+    },
+    {
+     "id": "i4",
+     "name": "Tiger Beer",
+     "qty": 1,
+     "line_cents": 1000,
+     "category": "drink",
+     "category_confidence": 0.95
+    },
+    {
+     "id": "i5",
+     "name": "House Red Wine (glass)",
+     "qty": 2,
+     "line_cents": 2800,
+     "category": "drink",
+     "category_confidence": 0.95
+    },
+    {
+     "id": "i6",
+     "name": "Lime Juice",
+     "qty": 1,
+     "line_cents": 600,
+     "category": "drink",
+     "category_confidence": 0.6
+    },
+    {
+     "id": "i7",
+     "name": "Chendol",
+     "qty": 1,
+     "line_cents": 1200,
+     "category": "dessert",
+     "category_confidence": 0.95
+    }
+   ],
+   "subtotal_cents": 15200,
+   "discount_cents": 0,
+   "service_charge_cents": 1520,
+   "gst_cents": 1505,
+   "total_cents": 18225,
+   "notes": [
+    "SC 10% on subtotal; GST 9% on subtotal+SC",
+    "Simulates an OCR misread of the Tiger Beer x3 line"
+   ]
+  },
+  "people": [
+   "Arun",
+   "Priya",
+   "Mei",
+   "Dan",
+   "Siti"
+  ],
+  "payer": "Mei",
+  "rules": "Arun didn't drink anything. It's Priya's birthday so she pays nothing."
+ }
+}

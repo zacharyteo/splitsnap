@@ -1,0 +1,26 @@
+{
+  "version": "0.1",
+  "type": "container",
+  "meta": { "trigger": "dashboard" },
+  "ops": [
+    {
+      "type": "container/run",
+      "id": "splitsnap-llm",
+      "args": {
+        "image": "docker.io/ollama/ollama:0.40.2",
+        "entrypoint": ["/bin/sh", "-c"],
+        "cmd": ["ollama serve & sleep 5; ollama pull qwen2.5-coder:7b; wait"],
+        "env": { "OLLAMA_HOST": "0.0.0.0:11434", "OLLAMA_KEEP_ALIVE": "-1" },
+        "gpu": true,
+        "expose": [
+          {
+            "port": 11434,
+            "health_checks": [
+              { "type": "http", "path": "/api/tags", "method": "GET", "expected_status": 200, "continuous": false }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

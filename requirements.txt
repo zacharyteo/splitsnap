@@ -1,0 +1,8 @@
+streamlit>=1.40
+pandas
+openai>=1.40
+daytona
+python-dotenv
+pytest
+# optional, only for the trip ledger:
+neo4j

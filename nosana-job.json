@@ -1,0 +1,23 @@
+{
+  "version": "0.1",
+  "type": "container",
+  "meta": { "trigger": "cli" },
+  "ops": [
+    {
+      "type": "container/run",
+      "id": "splitsnap-llm",
+      "args": {
+        "image": "docker.io/vllm/vllm-openai:latest",
+        "cmd": [
+          "--model", "Qwen/Qwen2.5-Coder-7B-Instruct-AWQ",
+          "--served-model-name", "qwen2.5-coder-7b",
+          "--quantization", "awq",
+          "--max-model-len", "8192",
+          "--port", "8000"
+        ],
+        "gpu": true,
+        "expose": 8000
+      }
+    }
+  ]
+}
