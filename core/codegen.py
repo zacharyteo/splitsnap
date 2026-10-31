@@ -37,12 +37,14 @@ def lr_split(total, weights):
 
 d = json.load(open("input.json"))
 r, people, A = d["receipt"], d["people"], d["assertions"]
+for a in A:  # every field always present, so a["person"] etc. never raise KeyError
+    for k, v in {"person": None, "persons": [], "item_id": None, "item_ids": [], "category": None, "weights": {}}.items():
+        a.setdefault(k, v)
 
 def item_weights(item):
     # Who shares this item and in what proportion. APPLY THE RULES HERE.
     # Replace w for item_shared_by / weight first, then zero out exclusions. Example for weight:
-    #   if a["type"] == "weight" and a["item_id"] == item["id"]: w = {p: a["weights"].get(p, 0) for p in people}
-    w = {p: 1 for p in people}
+    #   if a["type"] == "weight" and a["item_id"] == item["id"]: w = {p: a["weights"].get(p, 0) for p in people}    w = {p: 1 for p in people}
     return w
 
 alloc = {}
